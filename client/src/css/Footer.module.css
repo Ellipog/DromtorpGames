@@ -1,0 +1,16 @@
+@media screen and (max-width: 768px) {
+  .footer {
+    position: fixed;
+    bottom: 1%;
+    width: 75%;
+    color: rgba(255, 255, 255, 0.7);
+    height: 11%;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+  }
+
+  .activePage {
+    color: #ffffff;
+  }
+}
