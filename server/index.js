@@ -14,8 +14,16 @@ const klasseScore = new mongoose.Schema({
 	score: Number,
 	date: Number,
 });
-
 const KlasseInfo = mongoose.model("KlasseInfo", klasseScore);
+
+const user = new mongoose.Schema({
+	mail: String,
+	name: String,
+	password: String,
+	isAdmin: Boolean,
+});
+const User = mongoose.model("User", user);
+
 app.use(express.json());
 
 const corsOptions = {
@@ -40,6 +48,26 @@ app.post("/sendScores", (req, res) => {
 	});
 
 	newKlasseInfo
+		.save()
+		.then((savedData) => {
+			console.log("Saved data:", savedData);
+			res.send("Data received and saved successfully");
+		})
+		.catch((err) => {
+			console.error(err);
+			res.status(500).send("Error saving data");
+		});
+});
+
+app.post("/createAccount", (req, res) => {
+	const newUser = new User({
+		mail: req.body.mail,
+		name: req.body.name,
+		password: req.body.password,
+		isAdmin: false,
+	});
+
+	newUser
 		.save()
 		.then((savedData) => {
 			console.log("Saved data:", savedData);
