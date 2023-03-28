@@ -28,3 +28,11 @@
 	width: 90%;
 	justify-content: space-between;
 }
+
+h1 {
+	color: rgba(255, 255, 255, 0.9);
+}
+
+.invalidMail {
+	color: red;
+}
