@@ -25,7 +25,7 @@
 	flex-direction: row;
 	height: 7%;
 	align-items: center;
-	width: 90%;
+	width: 80%;
 	justify-content: space-between;
 }
 
@@ -33,6 +33,10 @@ h1 {
 	color: rgba(255, 255, 255, 0.9);
 }
 
-.invalidMail {
-	color: red;
+.hidden {
+	opacity: 0;
+}
+
+.errorText {
+	color: rgb(204, 73, 90);
 }

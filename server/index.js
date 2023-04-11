@@ -79,6 +79,20 @@ app.post("/createAccount", (req, res) => {
 		});
 });
 
+app.post("/login", (req, res) => {
+	console.log(req.body);
+	User.findOne({ mail: req.body.mail, password: req.body.password }).then((data) => {
+		if (data) {
+			console.log(data);
+			res.json(data);
+		} else {
+			data = { mail: "Bruker ikke funnet" };
+			res.json(data);
+			console.log(data);
+		}
+	});
+});
+
 app.get("/fetchScores", (req, res) => {
 	KlasseInfo.find({ klasse: { $exists: true }, score: { $exists: true } }).then((data) => {
 		res.json(

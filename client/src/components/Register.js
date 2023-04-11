@@ -2,29 +2,22 @@ import styles from "../css/Profile.module.css";
 import axios from "axios";
 import { useState } from "react";
 
-function Register() {
+function Register(props) {
 	const [userData, setUserData] = useState({ mail: "", name: "", password: "" });
-	const [mailError, setMailError] = useState(false);
+	const [error, setError] = useState(true);
 
 	function createAccount() {
-		console.log(userData);
-
-		if (userData.mail !== "" && userData.name !== "" && userData.password !== "") {
-			// axios.post("http://localhost:25584/createAccount", {
-			// 	mail: userData.mail,
-			// 	name: userData.name,
-			// 	password: userData.password,
-			// });
-			console.log("Bruker laget");
-		}
-	}
-
-	function setMail(e) {
-		if (e.target.value.includes("@") || e.target.value.length < 8) {
-			setUserData({ ...userData, mail: e.target.value });
-			setMailError(false);
-		} else if (e.target.value.length > 8) {
-			setMailError(true);
+		if (userData.mail !== "" && userData.name !== "" && userData.password !== "" && userData.mail.includes("@")) {
+			setError(true);
+			axios.post("http://localhost:25584/createAccount", {
+				mail: userData.mail,
+				name: userData.name,
+				password: userData.password,
+			});
+			props.setLogin("true");
+			console.log(props.login);
+		} else {
+			setError(false);
 		}
 	}
 
@@ -37,13 +30,14 @@ function Register() {
 			</div>
 			<div className={styles.inputSection}>
 				<p>Mail:</p>
-				<input className={`${mailError ? styles.invalidMail : ""}`} type="email" onChange={(e) => setMail(e)}></input>
+				<input type="email" onChange={(e) => setUserData({ ...userData, mail: e.target.value })}></input>
 			</div>
 			<div className={styles.inputSection}>
 				<p>Passord:</p>
 				<input type="password" onChange={(e) => setUserData({ ...userData, password: e.target.value })}></input>
 			</div>
 			<button onClick={() => createAccount()}>Lag bruker</button>
+			<p className={`${styles.errorText} ${error ? styles.hidden : ""}`}>Feil i minst 1 felt</p>
 		</div>
 	);
 }
