@@ -1,6 +1,7 @@
 import styles from "../css/Profile.module.css";
 import { useState } from "react";
 import Login from "../components/Login";
+import RegisterPoints from "../components/RegisterPoints";
 
 function Profile() {
 	const [login, setLogin] = useState("false");
@@ -8,7 +9,7 @@ function Profile() {
 	if (login === "true") {
 		return (
 			<div className={styles.container}>
-				<h1>Profile</h1>
+				<RegisterPoints />
 			</div>
 		);
 	} else if (login === "false") {

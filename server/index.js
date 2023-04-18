@@ -46,7 +46,6 @@ app.post("/sendScores", (req, res) => {
 		klasse: req.body.class,
 		score: req.body.points,
 		date: req.body.date,
-		x,
 	});
 
 	newKlasseInfo
