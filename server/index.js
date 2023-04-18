@@ -41,10 +41,12 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.post("/sendScores", (req, res) => {
+	console.log(req.body);
 	const newKlasseInfo = new KlasseInfo({
-		klasse: req.body.klasse,
-		score: req.body.score,
+		klasse: req.body.class,
+		score: req.body.points,
 		date: req.body.date,
+		x,
 	});
 
 	newKlasseInfo
