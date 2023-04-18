@@ -1,5 +1,6 @@
 import styles from "../css/Profile.module.css";
 import axios from "axios";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { useState } from "react";
 
 function Login(props) {
@@ -28,7 +29,8 @@ function Login(props) {
 	}
 
 	return (
-		<div className={styles.container}>
+		<div className={styles.miniContainer}>
+			<ArrowBackIosNewIcon onClick={() => props.setLogin("false")} />
 			<h1>Login</h1>
 			<div className={styles.inputSection}>
 				<p>Mail:</p>

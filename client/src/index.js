@@ -3,11 +3,10 @@ import ReactDOM from "react-dom/client";
 import "./css/index.css";
 import styles from "./css/App.module.css";
 import Leaderboard from "./routes/Leaderboard";
-import Profile from "./routes/Profile";
+import Profile from "./routes/Register";
 import Footer from "./components/Footer";
 import Test from "./components/Test";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { useState } from "react";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 

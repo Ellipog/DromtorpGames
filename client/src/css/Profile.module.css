@@ -13,11 +13,20 @@
 	align-items: center;
 	justify-content: center;
 	height: 80%;
-	width: 100%;
+	width: 90%;
 	background: rgba(255, 255, 255, 0.3);
 	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 	border-radius: 10px;
 	border: rgba(255, 255, 255, 0.2) solid 1px;
+}
+
+.miniContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 95%;
+	width: 95%;
 }
 
 .inputSection {
