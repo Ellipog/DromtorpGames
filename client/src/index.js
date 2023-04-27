@@ -5,7 +5,6 @@ import styles from "./css/App.module.css";
 import Leaderboard from "./routes/Leaderboard";
 import Profile from "./routes/Register";
 import Footer from "./components/Footer";
-import Test from "./components/Test";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -22,14 +21,6 @@ root.render(
 							element={
 								<>
 									<Leaderboard />
-								</>
-							}
-						></Route>
-						<Route
-							path="/chat"
-							element={
-								<>
-									<Test />
 								</>
 							}
 						></Route>

@@ -40,24 +40,45 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
+// app.post("/sendScores", (req, res) => {
+// 	console.log(req.body);
+// 	const newKlasseInfo = new KlasseInfo({
+// 		klasse: req.body.class.toUpperCase(),
+// 		score: req.body.points,
+// 		date: req.body.date,
+// 	});
+
+// 	newKlasseInfo
+// 		.save()
+// 		.then((savedData) => {
+// 			console.log("Saved data:", savedData);
+// 			res.send("Data received and saved successfully");
+// 		})
+// 		.catch((err) => {
+// 			console.error(err);
+// 			res.status(500).send("Error saving data");
+// 		});
+// });
 app.post("/sendScores", (req, res) => {
 	console.log(req.body);
-	const newKlasseInfo = new KlasseInfo({
-		klasse: req.body.class,
-		score: req.body.points,
-		date: req.body.date,
+	const filter = { klasse: req.body.class.toUpperCase() };
+	KlasseInfo.find(filter).then((data) => {
+		const update = {
+			klasse: req.body.class.toUpperCase(),
+			score: parseInt(req.body.points) + data[0].score,
+			date: req.body.date,
+		};
+		const options = { upsert: true };
+		KlasseInfo.findOneAndUpdate(filter, update, options)
+			.then((updatedData) => {
+				console.log("Updated data:", updatedData);
+				res.send("Data received and saved successfully");
+			})
+			.catch((err) => {
+				console.error(err);
+				res.status(500).send("Error saving data");
+			});
 	});
-
-	newKlasseInfo
-		.save()
-		.then((savedData) => {
-			console.log("Saved data:", savedData);
-			res.send("Data received and saved successfully");
-		})
-		.catch((err) => {
-			console.error(err);
-			res.status(500).send("Error saving data");
-		});
 });
 
 app.post("/createAccount", (req, res) => {
