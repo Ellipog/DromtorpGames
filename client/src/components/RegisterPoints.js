@@ -21,8 +21,8 @@ function RegisterPoints(props) {
 
   return (
     <div className={styles.miniContainer}>
-      <ArrowBackIosNewIcon onClick={() => props.setLogin("true")} />
-      <h1>Registrer poeng for klasse</h1>
+      <ArrowBackIosNewIcon className={styles.back} onClick={() => props.setLogin("true")} />
+      <h1>Registrer poeng</h1>
       <div className={styles.inputSection}>
         <p>Klasse</p>
         <input type="text" onChange={(e) => setPoints({ ...points, class: e.target.value })}></input>
@@ -31,7 +31,9 @@ function RegisterPoints(props) {
         <p>Poeng</p>
         <input type="number" onChange={(e) => setPoints({ ...points, points: e.target.value })}></input>
       </div>
-      <button onClick={() => registerPoints()}>Logg inn</button>
+      <button onClick={() => registerPoints()} className={styles.btn}>
+        Registrer
+      </button>
     </div>
   );
 }
