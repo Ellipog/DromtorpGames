@@ -3,9 +3,10 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
+require("dotenv").config();
 
 const app = express();
-const db = "mongodb+srv://admin:26u8tkZebfStExLI@dromtorpgames.3swznsh.mongodb.net/GamesInfo";
+const db = `mongodb+srv://admin:${process.env.MONGODB_PASSWORD}@dromtorpgames.3swznsh.mongodb.net/GamesInfo`;
 const port = 25584;
 
 mongoose.set("strictQuery", false);
