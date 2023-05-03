@@ -7,7 +7,7 @@ require("dotenv").config();
 
 const app = express();
 const db = `mongodb+srv://admin:${process.env.MONGODB_PASSWORD}@dromtorpgames.3swznsh.mongodb.net/GamesInfo`;
-const port = 25584;
+const port = 25567;
 
 mongoose.set("strictQuery", false);
 mongoose.connect(db, {});
@@ -51,21 +51,39 @@ app.post("/sendScores", (req, res) => {
   console.log(req.body);
   const filter = { klasse: req.body.class.toUpperCase() };
   KlasseInfo.find(filter).then((data) => {
-    const update = {
-      klasse: req.body.class.toUpperCase(),
-      score: parseInt(req.body.points) + data[0].score,
-      date: req.body.date,
-    };
-    const options = { upsert: true };
-    KlasseInfo.findOneAndUpdate(filter, update, options)
-      .then((updatedData) => {
-        console.log("Updated data:", updatedData);
-        res.send("Data received and saved successfully");
-      })
-      .catch((err) => {
-        console.error(err);
-        res.status(500).send("Error saving data");
-      });
+    if (data.length === 0) {
+      const update = {
+        klasse: req.body.class.toUpperCase(),
+        score: parseInt(req.body.points),
+        date: req.body.date,
+      };
+      const options = { upsert: true };
+      KlasseInfo.findOneAndUpdate(filter, update, options)
+        .then((updatedData) => {
+          console.log("Updated data:", updatedData);
+          res.send("Data received and saved successfully");
+        })
+        .catch((err) => {
+          console.error(err);
+          res.status(500).send("Error saving data");
+        });
+    } else {
+      const update = {
+        klasse: req.body.class.toUpperCase(),
+        score: parseInt(req.body.points) + data[0].score,
+        date: req.body.date,
+      };
+      const options = { upsert: true };
+      KlasseInfo.findOneAndUpdate(filter, update, options)
+        .then((updatedData) => {
+          console.log("Updated data:", updatedData);
+          res.send("Data received and saved successfully");
+        })
+        .catch((err) => {
+          console.error(err);
+          res.status(500).send("Error saving data");
+        });
+    }
   });
 });
 

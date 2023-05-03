@@ -11,7 +11,7 @@ function Login(props) {
     if (userData.mail !== "" && userData.password !== "" && userData.mail.includes("@")) {
       setError(true);
       axios
-        .post("http://localhost:25584/login", {
+        .post("http://195.204.109.253:25567/login", {
           mail: userData.mail,
           password: userData.password,
         })

@@ -8,10 +8,10 @@ function Leaderboard() {
   const [nextGame, setNextGame] = useState([{ name: "Loading...", date: 0 }]);
 
   function getLeaderboardData() {
-    axios.get("http://localhost:25584/fetchScores").then((res) => {
+    axios.get("http://195.204.109.253:25567/fetchScores").then((res) => {
       setLeaderboardData(res.data);
     });
-    axios.get("http://localhost:25584/fetchActivities").then((res) => {
+    axios.get("http://195.204.109.253:25567/fetchActivities").then((res) => {
       setNextGame(res.data);
     });
   }
